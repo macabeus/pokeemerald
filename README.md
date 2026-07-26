@@ -1,3 +1,21 @@
+## About this fork (`asmlift-benchmark` branch)
+
+This branch exists to make the [asmlift](https://github.com/macabeus/asmlift) decompiler
+benchmark reproducible. It is the upstream
+[pret/pokeemerald](https://github.com/pret/pokeemerald) tree at the exact commit the
+benchmark's functions were vendored from, plus a minimal integration commit:
+
+- `decomp.yaml` — points asmlift at the project's symbol source (`tools.asmlift.elf`):
+  `pokeemerald.elf`, the ELF the normal build already produces (names-only, no
+  types-sidecar); no extra build step
+- nothing else differs from upstream
+
+To reproduce the benchmark rows: build the project as usual (the ROM must match) — the
+built ELF is the symbol source — then follow the per-function scripts published in the
+benchmark report.
+
+---
+
 # Pokémon Emerald
 
 This is a decompilation of Pokémon Emerald.
