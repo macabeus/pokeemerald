@@ -396,3 +396,13 @@ $(ROM): $(ELF)
 # Symbol file (`make syms`)
 $(SYM): $(ELF)
 	$(OBJDUMP) -t $< | sort -u | grep -E "^0[2389]" | $(PERL) -p -e 's/^(\w{8}) (\w).{6} \S+\t(\w{8}) (\S+)$$/\1 \2 \3 \4/g' > $@
+
+# asmlift benchmark support (branch asmlift-benchmark): derive the symbol-source ELF
+# (pokeemerald-syms.elf) that decomp.yaml tools.asmlift.elf points at. pokeemerald
+# compiles every C file with agbcc -g, so the built ELF already embeds full DWARF
+# (struct layouts, array element sizes — file-scope statics included), and no separate
+# types-sidecar TU is needed; the target verifies that and copies. See
+# tools/asmlift-sidecar.sh.
+.PHONY: asmlift-elf
+asmlift-elf:
+	tools/asmlift-sidecar.sh

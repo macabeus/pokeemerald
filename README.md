@@ -6,13 +6,15 @@ benchmark reproducible. It is the upstream
 benchmark's functions were vendored from, plus a minimal integration commit:
 
 - `decomp.yaml` — points asmlift at the project's symbol source (`tools.asmlift.elf`):
-  `pokeemerald.elf`, the ELF the normal build already produces (names-only, no
-  types-sidecar); no extra build step
+  `pokeemerald-syms.elf`, a verified copy of the built ELF derived by `make asmlift-elf`
+  (`tools/asmlift-sidecar.sh`). pokeemerald compiles with agbcc `-g`, so the built ELF
+  already embeds full DWARF — struct layouts and array element sizes included; no
+  separate types-sidecar is needed
 - nothing else differs from upstream
 
-To reproduce the benchmark rows: build the project as usual (the ROM must match) — the
-built ELF is the symbol source — then follow the per-function scripts published in the
-benchmark report.
+To reproduce the benchmark rows: build the project as usual (the ROM must match), run
+`make asmlift-elf`, then follow the per-function scripts published in the benchmark
+report.
 
 ---
 
