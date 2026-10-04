@@ -1,4 +1,15 @@
+name: Pokémon Emerald
 platform: gba
+versions:
+  - name: us
+    fullname: US
+    sha1: f3ae088181bf583e55daf962a92bb46f4f1d07b7
+    paths:
+      # not in the repository: the build is checked against rom.sha1 instead
+      target: baserom.gba
+      build_dir: build/emerald
+      map: pokeemerald.map
+      compiled_target: pokeemerald.gba
 
 tools:
   asmlift:
